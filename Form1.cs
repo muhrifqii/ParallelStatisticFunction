@@ -665,7 +665,40 @@ namespace ParallelSPSS
 
             return dr == DialogResult.OK;
         }
-        
+
+        private void missingCount(int column)
+        {
+            int missingCount = 0;
+            double temp, temp2;
+
+            //for (int bx = 0; bx < Data.variableView[column].missing.Count; bx++)
+            //{
+            //    for (int ax = 0; ax < n; ax++)
+            //    {
+            //        double.TryParse(Data.variableView[column].missing[bx], out temp);
+            //        if (a[ax] == temp)
+            //        {
+            //            a[ax] = 0;
+            //            missingCount++;
+            //        }
+            //    }
+            //}
+            ////jajal
+            //if (Data.variableView[column].missingRange.Count > 1)
+            //{
+            //    for (int ax = 0; ax < n; ax++)
+            //    {
+            //        double.TryParse(Data.variableView[column].missingRange[0], out temp);
+            //        double.TryParse(Data.variableView[column].missingRange[1], out temp2);
+            //        if (a[ax] >= temp && a[ax] <= temp2)
+            //        {
+            //            a[ax] = 0;
+            //            missingCount++;
+            //        }
+            //    }
+            //}
+        }
+
         private void meanClick(object sender, EventArgs e)
         {
             Form dlg1 = new AnalyzeForm();
@@ -675,6 +708,84 @@ namespace ParallelSPSS
                 {
                     if (Data.columnChoosen[ii] != -1)
                     {
+                        //int column = Data.columnChoosen[ii];
+                        //Worksheet sheet = reoGridDataView.CurrentWorksheet;
+                        //int n = sheet.RowCount / 2;
+                        //double[] a = new double[n];
+                        //double[] b = new double[n];
+                        //double[] c = new double[n];
+                        //float[] merge = new float[sheet.RowCount];
+                        //int sum = 0;
+
+                        //float temp, temp2;
+                        //int missingCount = 0;
+
+                        //for (int bx = 0; bx < Data.variableView[column].missing.Count; bx++)
+                        //{
+                        //    for (int ax = 0; ax < n; ax++)
+                        //    {
+                        //        float.TryParse(Data.variableView[column].missing[bx], out temp);
+                        //        if (a[ax] == temp)
+                        //        {
+                        //            a[ax] = 0;
+                        //            missingCount++;
+                        //        }
+                        //    }
+                        //}
+                        ////jajal
+                        //if (Data.variableView[column].missingRange.Count > 1)
+                        //{
+                        //    for (int ax = 0; ax < n; ax++)
+                        //    {
+                        //        float.TryParse(Data.variableView[column].missingRange[0], out temp);
+                        //        float.TryParse(Data.variableView[column].missingRange[1], out temp2);
+                        //        if (a[ax] >= temp && a[ax] <= temp2)
+                        //        {
+                        //            a[ax] = 0;
+                        //            missingCount++;
+                        //        }
+                        //    }
+                        //}
+
+                        //Debug.WriteLine(missingCount);
+                        //float meanSequential = 0;
+                        //for (int i = 0; i < n; i++)
+                        //    meanSequential += a[i] + b[i];
+                        //meanSequential = meanSequential / (sum - missingCount);
+                        //float[] dev_a = _gpu.CopyToDevice(a);
+                        //float[] dev_b = _gpu.CopyToDevice(b);
+                        //float[] dev_c = _gpu.Allocate<float>(c);
+
+
+                        //bool first = true;
+                        //int N_awal = n;
+                        //while (n > 1)
+                        //{
+                        //    if (!first)
+                        //    {
+                        //        a = new float[n];
+                        //        b = new float[n];
+                        //        // c = new int[N];
+                        //        float[] baru = new float[n];
+                        //        for (int i = 0; i < (c.Count() - n); i++)
+                        //            baru[i] = c[n + i];
+
+                        //        dev_a = _gpu.CopyToDevice(c.Take(n).ToArray());
+                        //        dev_b = _gpu.CopyToDevice(baru);
+                        //        c = new float[n];
+                        //        dev_c = _gpu.Allocate<float>(c);
+                        //    }
+
+                        //    float[] d = new float[n];
+
+                        //    if (n % 2 == 0)
+                        //        n = n / 2;
+                        //    else
+                        //        n = (n + 1) / 2;
+
+                        //    first = false;
+                        //}
+
                         //Debug.WriteLine("mean-nya adalah " + (c[0] + c[1]) / (sum - missingCount) + " mean dari sequensial adalah " + meanSequential);
                         //results.Add((c[0] + c[1]) / (sum - missingCount));
                         ////for (int i = 0; i < N; i++)
@@ -683,7 +794,6 @@ namespace ParallelSPSS
                         //DialogResult dialog = new DialogResult();
                         //Form dialogResult = new ResultForm();
                         //dialog = dialogResult.ShowDialog();
-
                     }
                 }
             }
@@ -795,89 +905,3 @@ namespace ParallelSPSS
     }
 }
 
-//int column = Data.columnChoosen[ii];
-//Worksheet sheet = reoGridDataView.CurrentWorksheet;
-//int n = sheet.RowCount / 2;
-//double[] a = new double[n];
-//double[] b = new double[n];
-//double[] c = new double[n];
-//float[] merge = new float[sheet.RowCount];
-//int sum = 0;
-
-//float temp, temp2;
-//int missingCount = 0;
-
-//for (int bx = 0; bx < Data.variableView[column].missing.Count; bx++)
-//{
-//    for (int ax = 0; ax < n; ax++)
-//    {
-//        float.TryParse(Data.variableView[column].missing[bx], out temp);
-//        if (a[ax] == temp)
-//        {
-//            a[ax] = 0;
-//            missingCount++;
-//        }
-//    }
-//}
-////jajal
-//if (Data.variableView[column].missingRange.Count > 1)
-//{
-//    for (int ax = 0; ax < n; ax++)
-//    {
-//        float.TryParse(Data.variableView[column].missingRange[0], out temp);
-//        float.TryParse(Data.variableView[column].missingRange[1], out temp2);
-//        if (a[ax] >= temp && a[ax] <= temp2)
-//        {
-//            a[ax] = 0;
-//            missingCount++;
-//        }
-//    }
-//}
-
-//Debug.WriteLine(missingCount);
-//float meanSequential = 0;
-//for (int i = 0; i < n; i++)
-//    meanSequential += a[i] + b[i];
-//meanSequential = meanSequential / (sum - missingCount);
-//float[] dev_a = _gpu.CopyToDevice(a);
-//float[] dev_b = _gpu.CopyToDevice(b);
-//float[] dev_c = _gpu.Allocate<float>(c);
-
-
-//bool first = true;
-//int N_awal = n;
-//while (n > 1)
-//{
-//    if (!first)
-//    {
-//        a = new float[n];
-//        b = new float[n];
-//        // c = new int[N];
-//        float[] baru = new float[n];
-//        for (int i = 0; i < (c.Count() - n); i++)
-//            baru[i] = c[n + i];
-
-//        dev_a = _gpu.CopyToDevice(c.Take(n).ToArray());
-//        dev_b = _gpu.CopyToDevice(baru);
-//        c = new float[n];
-//        dev_c = _gpu.Allocate<float>(c);
-//    }
-
-//    float[] d = new float[n];
-
-//    if (n % 2 == 0)
-//        n = n / 2;
-//    else
-//        n = (n + 1) / 2;
-
-//    first = false;
-//}
-
-//Debug.WriteLine("mean-nya adalah " + (c[0] + c[1]) / (sum - missingCount) + " mean dari sequensial adalah " + meanSequential);
-//results.Add((c[0] + c[1]) / (sum - missingCount));
-////for (int i = 0; i < N; i++)
-////    Debug.Assert(a[i] + b[i] == c[i]);
-
-//DialogResult dialog = new DialogResult();
-//Form dialogResult = new ResultForm();
-//dialog = dialogResult.ShowDialog();
