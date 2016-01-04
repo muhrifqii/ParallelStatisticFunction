@@ -951,23 +951,26 @@ namespace ParallelSPSS
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
+                List<double[]> xy = new List<double[]>();
                 for (int i = 0; i < Data.columnChoosen.Length; i++)
                 {
                     if (Data.columnChoosen[i] != -1)
                     {
                         int column = Data.columnChoosen[i];
-                        double[] data;
                         int miss, dataSize;
-                        double result;
+                        double[] data;
 
                         createDataArr(column, out data, out miss, out dataSize);
                         Debug.WriteLine(miss);
-
-                        result = FunctionClass.Mean(data, miss, dataSize);
-                        Debug.WriteLine("regresi linear-nya adalah " + result);
-                        results.Add(result.ToString());
+                        xy.Add(data);
                     }
+                    
                 }
+                double r, a, b;
+                FunctionClass.LinearRegression(xy[0], xy[1], 0, xy[0].Length, out r, out b, out a);
+                Debug.WriteLine("regresi linear-nya adalah: Y = {0}X + {1}",a,b);
+                results.Add("Y = " + a + "X + " + b);
+
                 DialogResult dialog = new DialogResult();
                 Form dialogResult = new ResultLRForm(operatorType);
                 dialog = dialogResult.ShowDialog();
@@ -978,42 +981,3 @@ namespace ParallelSPSS
         #endregion
     }
 }
-
-//float meanSequential = 0;
-//for (int i = 0; i < n; i++)
-//    meanSequential += a[i] + b[i];
-//meanSequential = meanSequential / (sum - missingCount);
-//float[] dev_a = _gpu.CopyToDevice(a);
-//float[] dev_b = _gpu.CopyToDevice(b);
-//float[] dev_c = _gpu.Allocate<float>(c);
-
-
-//bool first = true;
-//int N_awal = n;
-//while (n > 1)
-//{
-//    if (!first)
-//    {
-//        a = new float[n];
-//        b = new float[n];
-//        // c = new int[N];
-//        float[] baru = new float[n];
-//        for (int i = 0; i < (c.Count() - n); i++)
-//            baru[i] = c[n + i];
-
-//        dev_a = _gpu.CopyToDevice(c.Take(n).ToArray());
-//        dev_b = _gpu.CopyToDevice(baru);
-//        c = new float[n];
-//        dev_c = _gpu.Allocate<float>(c);
-//    }
-
-//    float[] d = new float[n];
-
-//    if (n % 2 == 0)
-//        n = n / 2;
-//    else
-//        n = (n + 1) / 2;
-
-//    first = false;
-//}////for (int i = 0; i < N; i++)
-////    Debug.Assert(a[i] + b[i] == c[i]);
