@@ -965,7 +965,7 @@ namespace ParallelSPSS
 
                         result = FunctionClass.Mean(data, miss, dataSize);
                         Debug.WriteLine("regresi linear-nya adalah " + result);
-                        results.Add(result);
+                        results.Add(result.ToString());
                     }
                 }
                 DialogResult dialog = new DialogResult();
