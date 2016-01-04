@@ -666,238 +666,298 @@ namespace ParallelSPSS
             return dr == DialogResult.OK;
         }
 
-        private void missingCount(int column)
+        private void createDataArr(int column, out double[] data, out int missingCount, out int dataLength)
         {
-            int missingCount = 0;
+            missingCount = 0;
+            dataLength = 0;           
             double temp, temp2;
+            Worksheet sheet = reoGridDataView.CurrentWorksheet;
+            int N = sheet.RowCount;
+            Debug.WriteLine("banyak angka" + N);
+            data = new double[N];
+            double datTmp;
 
-            //for (int bx = 0; bx < Data.variableView[column].missing.Count; bx++)
-            //{
-            //    for (int ax = 0; ax < n; ax++)
-            //    {
-            //        double.TryParse(Data.variableView[column].missing[bx], out temp);
-            //        if (a[ax] == temp)
-            //        {
-            //            a[ax] = 0;
-            //            missingCount++;
-            //        }
-            //    }
-            //}
-            ////jajal
-            //if (Data.variableView[column].missingRange.Count > 1)
-            //{
-            //    for (int ax = 0; ax < n; ax++)
-            //    {
-            //        double.TryParse(Data.variableView[column].missingRange[0], out temp);
-            //        double.TryParse(Data.variableView[column].missingRange[1], out temp2);
-            //        if (a[ax] >= temp && a[ax] <= temp2)
-            //        {
-            //            a[ax] = 0;
-            //            missingCount++;
-            //        }
-            //    }
-            //}
+            if (Data.variableView[column].missing.Count > 0)
+            {
+                foreach (string missing in Data.variableView[column].missing)
+                {
+                    int j = 0;
+                    dataLength = 0;
+                    for (int i = 0; i < N; i++)
+                    {
+                        if (sheet[i, column] != null && sheet[i, column].ToString() != "")
+                        {
+                            double.TryParse(sheet[i, column].ToString(), out datTmp);
+                            dataLength++;
+                        }
+                        else datTmp = double.NaN;
+
+                        double.TryParse(missing, out temp);
+                        if (datTmp == temp)
+                        {
+                            missingCount++;
+                        }
+                        else
+                        {
+                            data[j] = datTmp;
+                            j++;
+                        }
+                    }
+                }
+            }
+            else if (Data.variableView[column].missingRange.Count > 1)
+            {
+                int j = 0;
+                for (int i = 0; i < N; i++)
+                {
+                    if (sheet[i, column] != null && sheet[i, column].ToString() != "")
+                    {
+                        double.TryParse(sheet[i, column].ToString(), out datTmp);
+                        dataLength++;
+                    }
+                    else datTmp = double.NaN;
+
+                    double.TryParse(Data.variableView[column].missingRange[0], out temp);
+                    double.TryParse(Data.variableView[column].missingRange[1], out temp2);
+                    if (data[i] >= temp && data[i] <= temp2)
+                    {
+                        missingCount++;
+                    }
+                    else
+                    {
+                        data[j] = datTmp;
+                        j++;
+                    }
+                }
+            }
+            else
+            {
+                for(int i=0;i< N; i++)
+                {
+                    if (sheet[i, column] != null && sheet[i, column].ToString() != "")
+                    {
+                        double.TryParse(sheet[i, column].ToString(), out data[i]);
+                        Debug.Write(data[i] + " ");
+                        dataLength++;
+                    }
+                }
+                Debug.WriteLine("");
+            }
         }
 
         private void meanClick(object sender, EventArgs e)
         {
+            string operatorType = "Mean";
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                for (int ii = 0; ii < Data.columnChoosen.Length; ii++)
+                for (int i = 0; i < Data.columnChoosen.Length; i++)
                 {
-                    if (Data.columnChoosen[ii] != -1)
+                    if (Data.columnChoosen[i] != -1)
                     {
-                        //int column = Data.columnChoosen[ii];
-                        //Worksheet sheet = reoGridDataView.CurrentWorksheet;
-                        //int n = sheet.RowCount / 2;
-                        //double[] a = new double[n];
-                        //double[] b = new double[n];
-                        //double[] c = new double[n];
-                        //float[] merge = new float[sheet.RowCount];
-                        //int sum = 0;
+                        int column = Data.columnChoosen[i];
+                        double[] data;
+                        int miss, dataSize;
+                        double result;
 
-                        //float temp, temp2;
-                        //int missingCount = 0;
+                        createDataArr(column, out data, out miss, out dataSize);
+                        Debug.WriteLine(miss);
 
-                        //for (int bx = 0; bx < Data.variableView[column].missing.Count; bx++)
-                        //{
-                        //    for (int ax = 0; ax < n; ax++)
-                        //    {
-                        //        float.TryParse(Data.variableView[column].missing[bx], out temp);
-                        //        if (a[ax] == temp)
-                        //        {
-                        //            a[ax] = 0;
-                        //            missingCount++;
-                        //        }
-                        //    }
-                        //}
-                        ////jajal
-                        //if (Data.variableView[column].missingRange.Count > 1)
-                        //{
-                        //    for (int ax = 0; ax < n; ax++)
-                        //    {
-                        //        float.TryParse(Data.variableView[column].missingRange[0], out temp);
-                        //        float.TryParse(Data.variableView[column].missingRange[1], out temp2);
-                        //        if (a[ax] >= temp && a[ax] <= temp2)
-                        //        {
-                        //            a[ax] = 0;
-                        //            missingCount++;
-                        //        }
-                        //    }
-                        //}
-
-                        //Debug.WriteLine(missingCount);
-                        //float meanSequential = 0;
-                        //for (int i = 0; i < n; i++)
-                        //    meanSequential += a[i] + b[i];
-                        //meanSequential = meanSequential / (sum - missingCount);
-                        //float[] dev_a = _gpu.CopyToDevice(a);
-                        //float[] dev_b = _gpu.CopyToDevice(b);
-                        //float[] dev_c = _gpu.Allocate<float>(c);
-
-
-                        //bool first = true;
-                        //int N_awal = n;
-                        //while (n > 1)
-                        //{
-                        //    if (!first)
-                        //    {
-                        //        a = new float[n];
-                        //        b = new float[n];
-                        //        // c = new int[N];
-                        //        float[] baru = new float[n];
-                        //        for (int i = 0; i < (c.Count() - n); i++)
-                        //            baru[i] = c[n + i];
-
-                        //        dev_a = _gpu.CopyToDevice(c.Take(n).ToArray());
-                        //        dev_b = _gpu.CopyToDevice(baru);
-                        //        c = new float[n];
-                        //        dev_c = _gpu.Allocate<float>(c);
-                        //    }
-
-                        //    float[] d = new float[n];
-
-                        //    if (n % 2 == 0)
-                        //        n = n / 2;
-                        //    else
-                        //        n = (n + 1) / 2;
-
-                        //    first = false;
-                        //}
-
-                        //Debug.WriteLine("mean-nya adalah " + (c[0] + c[1]) / (sum - missingCount) + " mean dari sequensial adalah " + meanSequential);
-                        //results.Add((c[0] + c[1]) / (sum - missingCount));
-                        ////for (int i = 0; i < N; i++)
-                        ////    Debug.Assert(a[i] + b[i] == c[i]);
-
-                        //DialogResult dialog = new DialogResult();
-                        //Form dialogResult = new ResultForm();
-                        //dialog = dialogResult.ShowDialog();
+                        result = FunctionClass.Mean(data, miss, dataSize);
+                        Debug.WriteLine("mean-nya adalah " + result);
+                        results.Add(result);                        
                     }
                 }
+                DialogResult dialog = new DialogResult();
+                Form dialogResult = new ResultForm(operatorType);
+                dialog = dialogResult.ShowDialog();
+                results.Clear();
             }
             else dlg1.Close();
         }
 
         private void medianClicked(object sender, EventArgs e)
         {
+            string operatorType = "Median";
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                for (int ii = 0; ii < Data.columnChoosen.Length; ii++)
-                {
-                    if (Data.columnChoosen[ii] != -1)
-                    {
+                //for (int i = 0; i < Data.columnChoosen.Length; i++)
+                //{
+                //    if (Data.columnChoosen[i] != -1)
+                //    {
+                //        int column = Data.columnChoosen[i];
+                //        double[] data;
+                //        int miss, dataSize;
+                //        double result;
 
+                //        createDataArr(column, out data, out miss, out dataSize);
+                //        Debug.WriteLine(miss);
 
-                    }
-                }
+                //        result = FunctionClass.Median(data, miss, dataSize);
+                //        Debug.WriteLine("median-nya adalah " + result);
+                //        results.Add(result);
+                //    }
+                //}
+                //DialogResult dialog = new DialogResult();                
+                //Form dialogResult = new ResultForm(operatorType);
+                //dialog = dialogResult.ShowDialog();
+                //results.Clear();
             }
             else dlg1.Close();
         }
 
         private void modesClicked(object sender, EventArgs e)
         {
+            string operatorType = "Modes";
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                for (int ii = 0; ii < Data.columnChoosen.Length; ii++)
-                {
-                    if (Data.columnChoosen[ii] != -1)
-                    {
+                //for (int i = 0; i < Data.columnChoosen.Length; i++)
+                //{
+                //    if (Data.columnChoosen[i] != -1)
+                //    {
+                //        int column = Data.columnChoosen[i];
+                //        double[] data;
+                //        int miss, dataSize;
+                //        double result;
 
+                //        createDataArr(column, out data, out miss, out dataSize);
+                //        Debug.WriteLine(miss);
 
-                    }
-                }
+                //        result = FunctionClass.Modes(data, miss, dataSize);
+                //        Debug.WriteLine("modus-nya adalah " + result);
+                //        results.Add(result);
+                //    }
+                //}
+                //DialogResult dialog = new DialogResult();
+                //Form dialogResult = new ResultForm(operatorType);
+                //dialog = dialogResult.ShowDialog();
+                //results.Clear();
             }
             else dlg1.Close();
         }
 
         private void standardDeviationClicked(object sender, EventArgs e)
         {
+            string operatorType = "SD";
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                for (int ii = 0; ii < Data.columnChoosen.Length; ii++)
-                {
-                    if (Data.columnChoosen[ii] != -1)
-                    {
+                //for (int i = 0; i < Data.columnChoosen.Length; i++)
+                //{
+                //    if (Data.columnChoosen[i] != -1)
+                //    {
+                //        int column = Data.columnChoosen[i];
+                //        double[] data;
+                //        int miss, dataSize;
+                //        double result;
 
+                //        createDataArr(column, out data, out miss, out dataSize);
+                //        Debug.WriteLine(miss);
 
-                    }
-                }
+                //        result = FunctionClass.StandardDeviation(data, miss, dataSize);
+                //        Debug.WriteLine("deviasi standar-nya adalah " + result);
+                //        results.Add(result);
+                //    }
+                //}
+                //DialogResult dialog = new DialogResult();
+                //Form dialogResult = new ResultForm(operatorType);
+                //dialog = dialogResult.ShowDialog();
+                //results.Clear();
             }
             else dlg1.Close();
         }
 
         private void varianceClicked(object sender, EventArgs e)
         {
+            string operatorType = "Variance";
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                for (int ii = 0; ii < Data.columnChoosen.Length; ii++)
-                {
-                    if (Data.columnChoosen[ii] != -1)
-                    {
+                //for (int i = 0; i < Data.columnChoosen.Length; i++)
+                //{
+                //    if (Data.columnChoosen[i] != -1)
+                //    {
+                //        int column = Data.columnChoosen[i];
+                //        double[] data;
+                //        int miss, dataSize;
+                //        double result;
 
+                //        createDataArr(column, out data, out miss, out dataSize);
+                //        Debug.WriteLine(miss);
 
-                    }
-                }
+                //        result = FunctionClass.Variance(data, miss, dataSize);
+                //        Debug.WriteLine("variansi-nya adalah " + result);
+                //        results.Add(result);
+                //    }
+                //}
+                //DialogResult dialog = new DialogResult();
+                //Form dialogResult = new ResultForm(operatorType);
+                //dialog = dialogResult.ShowDialog();
+                //results.Clear();
             }
             else dlg1.Close();
         }
 
         private void rangeClicked(object sender, EventArgs e)
         {
+            string operatorType = "Range";
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                for (int ii = 0; ii < Data.columnChoosen.Length; ii++)
-                {
-                    if (Data.columnChoosen[ii] != -1)
-                    {
+                //for (int i = 0; i < Data.columnChoosen.Length; i++)
+                //{
+                //    if (Data.columnChoosen[i] != -1)
+                //    {
+                //        int column = Data.columnChoosen[i];
+                //        double[] data;
+                //        int miss, dataSize;
+                //        double result;
 
+                //        createDataArr(column, out data, out miss, out dataSize);
+                //        Debug.WriteLine(miss);
 
-                    }
-                }
+                //        result = FunctionClass.Range(data, miss, dataSize);
+                //        Debug.WriteLine("range-nya adalah " + result);
+                //        results.Add(result);
+                //    }
+                //}
+                //DialogResult dialog = new DialogResult();
+                //Form dialogResult = new ResultForm(operatorType);
+                //dialog = dialogResult.ShowDialog();
+                //results.Clear();
             }
             else dlg1.Close();
         }
 
         private void regresionClicked(object sender, EventArgs e)
         {
+            string operatorType = "Linear Regression";
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                for (int ii = 0; ii < Data.columnChoosen.Length; ii++)
-                {
-                    if (Data.columnChoosen[ii] != -1)
-                    {
+                //for (int i = 0; i < Data.columnChoosen.Length; i++)
+                //{
+                //    if (Data.columnChoosen[i] != -1)
+                //    {
+                //        int column = Data.columnChoosen[i];
+                //        double[] data;
+                //        int miss, dataSize;
+                //        double result;
 
+                //        createDataArr(column, out data, out miss, out dataSize);
+                //        Debug.WriteLine(miss);
 
-                    }
-                }
+                //        result = FunctionClass.Mean(data, miss, dataSize);
+                //        Debug.WriteLine("regresi linear-nya adalah " + result);
+                //        results.Add(result);
+                //    }
+                //}
+                //DialogResult dialog = new DialogResult();
+                //Form dialogResult = new ResultForm();
+                //dialog = dialogResult.ShowDialog();
+                //results.Clear();
             }
             else dlg1.Close();
         }
@@ -905,3 +965,41 @@ namespace ParallelSPSS
     }
 }
 
+//float meanSequential = 0;
+//for (int i = 0; i < n; i++)
+//    meanSequential += a[i] + b[i];
+//meanSequential = meanSequential / (sum - missingCount);
+//float[] dev_a = _gpu.CopyToDevice(a);
+//float[] dev_b = _gpu.CopyToDevice(b);
+//float[] dev_c = _gpu.Allocate<float>(c);
+
+
+//bool first = true;
+//int N_awal = n;
+//while (n > 1)
+//{
+//    if (!first)
+//    {
+//        a = new float[n];
+//        b = new float[n];
+//        // c = new int[N];
+//        float[] baru = new float[n];
+//        for (int i = 0; i < (c.Count() - n); i++)
+//            baru[i] = c[n + i];
+
+//        dev_a = _gpu.CopyToDevice(c.Take(n).ToArray());
+//        dev_b = _gpu.CopyToDevice(baru);
+//        c = new float[n];
+//        dev_c = _gpu.Allocate<float>(c);
+//    }
+
+//    float[] d = new float[n];
+
+//    if (n % 2 == 0)
+//        n = n / 2;
+//    else
+//        n = (n + 1) / 2;
+
+//    first = false;
+//}////for (int i = 0; i < N; i++)
+////    Debug.Assert(a[i] + b[i] == c[i]);

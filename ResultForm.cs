@@ -12,6 +12,12 @@ namespace ParallelSPSS
 {
     public partial class ResultForm : Form
     {
+        public ResultForm(string operatorName)
+        {
+            InitializeComponent();
+            operatorFunctionName.Text = operatorName;
+        }
+
         public ResultForm()
         {
             InitializeComponent();

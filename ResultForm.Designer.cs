@@ -33,7 +33,7 @@ namespace ParallelSPSS
             this.resultTable = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.operatorFunctionName = new System.Windows.Forms.Label();
             this.resultTable.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,22 +76,22 @@ namespace ParallelSPSS
             this.label1.Text = "Column";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // operatorFunctionName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(357, 84);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Mean";
+            this.operatorFunctionName.AutoSize = true;
+            this.operatorFunctionName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.operatorFunctionName.Location = new System.Drawing.Point(357, 84);
+            this.operatorFunctionName.Name = "operatorFunctionName";
+            this.operatorFunctionName.Size = new System.Drawing.Size(53, 20);
+            this.operatorFunctionName.TabIndex = 0;
+            this.operatorFunctionName.Text = "Mean";
             // 
             // ResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 396);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.operatorFunctionName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.resultTable);
             this.Name = "ResultForm";
@@ -100,7 +100,6 @@ namespace ParallelSPSS
             this.resultTable.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.Load+=ResultForm_Load;
 
         }
 
@@ -129,6 +128,6 @@ namespace ParallelSPSS
         private System.Windows.Forms.TableLayoutPanel resultTable;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label operatorFunctionName;
     }
 }

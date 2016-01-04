@@ -8,35 +8,43 @@ namespace ParallelSPSS
 {
     class FunctionClass
     {
-        public static double Range(double[] data)
+        public static double Range(double[] data, int miss, int size)
         {
-            return data.Max() - data.Min();
+            double max, min;
+            max = min = data[0];
+            for(int i = 1; i < size - miss; i++)
+            {
+                max = data[i] > max ? data[i] : max;
+                min = data[i] < min ? data[i] : min;
+            }
+            return max - min;
         }        
 
-        public static double Mean(double[] data)
+        public static double Mean(double[] data, int missingCount, int size)
         {
-            return data.Sum() / data.Length;
+            System.Diagnostics.Debug.WriteLine("sum: " + data.Sum());
+            return data.Sum() / (size - missingCount);
         }
 
-        public static double Median(double[] data)
+        public static double Median(double[] data, int missingCount, int size)
         {
-            bool isOdd = data.Length % 2 != 0;
-            double[] x = new double[data.Length];
-            double[] res = new double[data.Length];
+            bool isOdd = (size - missingCount) % 2 != 0;
+            double[] x = new double[size - missingCount];
+            double[] res = new double[size - missingCount];
             data.CopyTo(x, 0);
             res = x.OrderBy((val) => val).ToArray();
 
-            if (isOdd) return res[data.Length / 2];
-            else return (res[data.Length / 2] + res[data.Length / 2 - 1]) / 2;
+            if (isOdd) return res[(size - missingCount) / 2];
+            else return (res[(size - missingCount) / 2] + res[(size - missingCount) / 2 - 1]) / 2;
         }
 
-        public static double Modes(double[] data)
+        public static double Modes(double[] data, int missing, int size)
         {
             Dictionary<double, int> x = new Dictionary<double, int>();
-            foreach(double dob in data)
+            for(int i=0;i<size - missing; i++)
             {
-                if (!x.ContainsKey(dob)) x[dob] = 1;
-                else x[dob]++;
+                if (!x.ContainsKey(data[i])) x[data[i]] = 1;
+                else x[data[i]]++;
             }
             double mode = 0;
             int count = 0;
@@ -51,22 +59,22 @@ namespace ParallelSPSS
             return mode;
         }
 
-        public static double Variance(double[] data)
+        public static double Variance(double[] data, int missingCount, int size)
         {
             double result = 0;
-            double theMean = Mean(data);
-            foreach(double dob in data)
+            double theMean = Mean(data, missingCount, size);
+            for (int i = 0; i < size - missingCount; i++)
             {
-                result += Math.Pow(dob - theMean, 2);
+                result += Math.Pow(data[i] - theMean, 2);
             }
-            result /= data.Length;
+            result /= (size - missingCount);
 
             return result;
         }
 
-        public static double StandardDeviation(double[] data)
+        public static double StandardDeviation(double[] data, int missingCount, int size)
         {
-            return Math.Sqrt(Variance(data));
+            return Math.Sqrt(Variance(data, missingCount, size));
         }
 
         /// <summary>
