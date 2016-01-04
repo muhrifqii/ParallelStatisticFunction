@@ -20,6 +20,11 @@ External Library
 * **Newtonsoft.Json** for read and write
 * **unvell.ReoGrid** for the sheet views
 
+Credits
+-------
+* `Mr. Lukman` as Lecturer of Parallel System, Gadjah Mada University
+* `Yudha` for the user interface
+
 License
 -------
 
