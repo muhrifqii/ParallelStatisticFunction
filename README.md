@@ -1,6 +1,6 @@
 # ParallelStatisticFunction
 
-import data from excel or csv and calculate using statistic operators
+import data from excel or csv and calculate using statistic operators, implements the `System.Threading.Task`
 
 Operation
 ---------
@@ -10,8 +10,13 @@ The Statistics operations are:
 * **Modes**
 * **Standard Deviation**
 * **Variance**
-* **Range**
+* **Range**	`paralleled function`
 * **Linear Regression**
+
+Library
+-------
+* **Newtonsoft.Json** for conversion
+* **unvell.ReoGrid** for the sheet views
 
 License
 -------
