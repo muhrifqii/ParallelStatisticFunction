@@ -75,6 +75,12 @@
     <Compile Include="AnalyzeForm.Designer.cs">
       <DependentUpon>AnalyzeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaseResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseResultForm.Designer.cs">
+      <DependentUpon>BaseResultForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CompleteData.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Form1.cs">
@@ -103,6 +109,12 @@
     </Compile>
     <Compile Include="ResultForm.Designer.cs">
       <DependentUpon>ResultForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResultLRForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResultLRForm.Designer.cs">
+      <DependentUpon>ResultLRForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AnalyzeForm.resx">
       <DependentUpon>AnalyzeForm.cs</DependentUpon>

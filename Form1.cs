@@ -23,7 +23,7 @@ namespace ParallelSPSS
         public string[,] DataView = new string[10000, 13];
         public string[,] VariableView = new string[100, 100];
 
-        public static List<double> results = new List<double>();
+        public static List<string> results = new List<string>();
         public static List<string> columnChoosen = new List<string>();
 
 
@@ -779,7 +779,7 @@ namespace ParallelSPSS
 
                         result = FunctionClass.Mean(data, miss, dataSize);
                         Debug.WriteLine("mean-nya adalah " + result);
-                        results.Add(result);                        
+                        results.Add(result.ToString());                        
                     }
                 }
                 DialogResult dialog = new DialogResult();
@@ -810,7 +810,7 @@ namespace ParallelSPSS
 
                         result = FunctionClass.Median(data, miss, dataSize);
                         Debug.WriteLine("median-nya adalah " + result);
-                        results.Add(result);
+                        results.Add(result.ToString());
                     }
                 }
                 DialogResult dialog = new DialogResult();
@@ -841,7 +841,7 @@ namespace ParallelSPSS
 
                         result = FunctionClass.Modes(data, miss, dataSize);
                         Debug.WriteLine("modus-nya adalah " + result);
-                        results.Add(result);
+                        results.Add(result.ToString());
                     }
                 }
                 DialogResult dialog = new DialogResult();
@@ -872,7 +872,7 @@ namespace ParallelSPSS
 
                         result = FunctionClass.StandardDeviation(data, miss, dataSize);
                         Debug.WriteLine("deviasi standar-nya adalah " + result);
-                        results.Add(result);
+                        results.Add(result.ToString());
                     }
                 }
                 DialogResult dialog = new DialogResult();
@@ -903,7 +903,7 @@ namespace ParallelSPSS
 
                         result = FunctionClass.Variance(data, miss, dataSize);
                         Debug.WriteLine("variansi-nya adalah " + result);
-                        results.Add(result);
+                        results.Add(result.ToString());
                     }
                 }
                 DialogResult dialog = new DialogResult();
@@ -934,7 +934,7 @@ namespace ParallelSPSS
 
                         result = FunctionClass.Range(data, miss, dataSize);
                         Debug.WriteLine("range-nya adalah " + result);
-                        results.Add(result);
+                        results.Add(result.ToString());
                     }
                 }
                 DialogResult dialog = new DialogResult();
@@ -969,7 +969,7 @@ namespace ParallelSPSS
                     }
                 }
                 DialogResult dialog = new DialogResult();
-                Form dialogResult = new ResultForm();
+                Form dialogResult = new ResultLRForm(operatorType);
                 dialog = dialogResult.ShowDialog();
                 results.Clear();
             }

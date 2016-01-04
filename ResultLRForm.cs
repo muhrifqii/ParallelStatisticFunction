@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace ParallelSPSS
 {
-    public partial class ResultForm : Form
+    public partial class ResultLRForm : Form
     {
-        public ResultForm(string operatorName)
+        public ResultLRForm(string operatorName)
         {
             InitializeComponent();
             operatorFunctionName.Text = operatorName;
@@ -32,5 +32,6 @@ namespace ParallelSPSS
                 Debug.Write(Form1.results[i]);
             }
         }
+
     }
 }

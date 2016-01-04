@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ParallelSPSS
@@ -142,6 +143,53 @@ namespace ParallelSPSS
             rsquared = dblR * dblR;
             yintercept = meanY - ((sCo / ssX) * meanX);
             slope = sCo / ssX;
+        }
+
+        //range paralel : data dipecah jadi n array of data, 
+        //cek max min tiap array of data yg dipecah,
+        //cek max min tiap max min hasil dari array of data yg dipecah,
+        //max min dikurangi
+
+        public static double RangeParTask(double[] data, int miss, int size)
+        {
+            double result = 0;
+            int splitSize = size / 2;
+            bool isOdd = size % 2 != 0;
+
+            Task[] tasks1 = new Task[splitSize];
+            int j = 0;
+            for (int i = 1; i < tasks1.Length; i++)
+            {
+                tasks1[i] = Task.Factory.StartNew((Object obj) =>
+                {
+                    HelperRangeData check = obj as HelperRangeData;
+                    if (check == null) return;
+                    check.ThreadNum = Thread.CurrentThread.ManagedThreadId;
+                    if(check.Max < check.Min)
+                    {
+                        double tmp = check.Max;
+                        check.Max = check.Min;
+                        check.Min = tmp;
+                    }
+                },
+                new HelperRangeData()
+                {
+                    Index = i, CreationTime = DateTime.Now.Ticks,
+                    Max = data[j++], Min = data[j++]
+                });
+            }
+            Task.WaitAll(tasks1);
+
+            return result;
+        }
+
+        class HelperRangeData
+        {
+            public int Index { get; set; }
+            public int ThreadNum { get; set; }
+            public long CreationTime { get; set; }
+            public double Max { get; set; }
+            public double Min { get; set; }
         }
 
         //public static double RangeParallel(double[] data)
