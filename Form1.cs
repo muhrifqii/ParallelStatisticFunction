@@ -666,7 +666,16 @@ namespace ParallelSPSS
             return dr == DialogResult.OK;
         }
 
-        private void createDataArr(int column, out double[] data, out int missingCount, out int dataLength)
+        private void removeEmptyRow(double[] data, int length, out double[] nonEmptyData)
+        {
+            nonEmptyData = new double[length];
+            for(int i = 0; i < length; i++)
+            {
+                nonEmptyData[i] = data[i];
+            }
+        }
+
+        private void createDataArr(int column, out double[] nonEmptyRowData, out int missingCount, out int dataLength)
         {
             missingCount = 0;
             dataLength = 0;           
@@ -674,7 +683,7 @@ namespace ParallelSPSS
             Worksheet sheet = reoGridDataView.CurrentWorksheet;
             int N = sheet.RowCount;
             Debug.WriteLine("banyak angka" + N);
-            data = new double[N];
+            double[] data = new double[N];
             double datTmp;
 
             if (Data.variableView[column].missing.Count > 0)
@@ -737,12 +746,17 @@ namespace ParallelSPSS
                     if (sheet[i, column] != null && sheet[i, column].ToString() != "")
                     {
                         double.TryParse(sheet[i, column].ToString(), out data[i]);
-                        Debug.Write(data[i] + " ");
+                        //Debug.Write(data[i] + " ");
                         dataLength++;
                     }
+                    //else
+                    //{
+                    //    data[i] = double.NaN;
+                    //}
                 }
-                Debug.WriteLine("");
+                //Debug.WriteLine("");
             }
+            removeEmptyRow(data, dataLength, out nonEmptyRowData);
         }
 
         private void meanClick(object sender, EventArgs e)

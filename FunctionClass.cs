@@ -28,11 +28,27 @@ namespace ParallelSPSS
 
         public static double Median(double[] data, int missingCount, int size)
         {
+            ////make sure the list is sorted, but use a new array
+            //double[] sortedPNumbers = (double[])data.Clone();
+            //Array.Sort(sortedPNumbers);
+
+            ////get the median
+            //int sortedSize = sortedPNumbers.Length;
+            //int mid = sortedSize / 2;
+            //double median = (sortedSize % 2 != 0) ? (double)sortedPNumbers[mid] : ((double)sortedPNumbers[mid] + (double)sortedPNumbers[mid - 1]) / 2;
+            //return median;
+
             bool isOdd = (size - missingCount) % 2 != 0;
             double[] x = new double[data.Length];
             double[] res = new double[data.Length];
             data.CopyTo(x, 0);
             res = x.OrderBy((val) => val).ToArray();
+
+            for (int i = 0; i < res.Length; i++)
+            {
+                System.Diagnostics.Debug.Write(res[i] + " ");
+            }
+            System.Diagnostics.Debug.Write("\n");
 
             if (isOdd) return res[(size - missingCount) / 2];
             else return (res[(size - missingCount) / 2] + res[(size - missingCount) / 2 - 1]) / 2;
