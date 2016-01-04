@@ -1,6 +1,8 @@
 # ParallelStatisticFunction
 
 import data from excel or csv and calculate using statistic operators, implements the `System.Threading.Task`
+and built the statistic function to a individual Library. It's open to public to contribute to the function.
+
 
 Operation
 ---------
@@ -13,9 +15,9 @@ The Statistics operations are:
 * **Range**	`paralleled function`
 * **Linear Regression**
 
-Library
--------
-* **Newtonsoft.Json** for conversion
+External Library
+----------------
+* **Newtonsoft.Json** for read and write
 * **unvell.ReoGrid** for the sheet views
 
 License

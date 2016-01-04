@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using StatisticsParallel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -967,7 +968,11 @@ namespace ParallelSPSS
                     
                 }
                 double r, a, b;
-                FunctionClass.LinearRegression(xy[0], xy[1], 0, xy[0].Length, out r, out b, out a);
+
+                FunctionClass.LinearRegression(
+                    xy[0], xy[1], 
+                    0, xy[0].Length < xy[1].Length?xy[0].Length:xy[1].Length, 
+                    out r, out b, out a);
                 Debug.WriteLine("regresi linear-nya adalah: Y = {0}X + {1}",a,b);
                 results.Add("Y = " + a + "X + " + b);
 

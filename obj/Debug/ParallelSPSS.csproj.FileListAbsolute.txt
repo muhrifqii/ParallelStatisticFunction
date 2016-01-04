@@ -32,3 +32,5 @@ D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\obj\Debug\ParallelSPSS.Missing
 D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\obj\Debug\ParallelSPSS.Properties.Resources.resources
 D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\obj\Debug\ParallelSPSS.ResultForm.resources
 D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\obj\Debug\ParallelSPSS.csproj.GenerateResource.Cache
+D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\bin\Debug\StatisticsParallel.dll
+D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\bin\Debug\StatisticsParallel.pdb
