@@ -972,7 +972,7 @@ namespace ParallelSPSS
                 results.Add("Y = " + a + "X + " + b);
 
                 DialogResult dialog = new DialogResult();
-                Form dialogResult = new ResultLRForm(operatorType);
+                Form dialogResult = new ResultForm(operatorType);
                 dialog = dialogResult.ShowDialog();
                 results.Clear();
             }
