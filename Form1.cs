@@ -928,13 +928,18 @@ namespace ParallelSPSS
                         int column = Data.columnChoosen[i];
                         double[] data;
                         int miss, dataSize;
-                        double result;
+                        double result, parRes, parRes1, parRes2;
+                        long timeSeq, timePar, timePar1, timePar2;
 
                         createDataArr(column, out data, out miss, out dataSize);
                         Debug.WriteLine(miss);
 
-                        result = FunctionClass.Range(data, miss, dataSize);
-                        Debug.WriteLine("range-nya adalah " + result);
+                        result = FunctionClass.Range(data, miss, dataSize, out timeSeq);
+                        parRes = ParallelFunctionClass.RangeParTask1(data, miss, dataSize, out timePar);
+                        parRes1 = ParallelFunctionClass.RangeParTask2(data, miss, dataSize, out timePar1);
+                        Debug.WriteLine("range-nya adalah " + result + " waktu: " + timeSeq);
+                        Debug.WriteLine("range_parallel (1): " + parRes + " waktu: " + timePar);
+                        Debug.WriteLine("range_parallel (2): " + parRes1 + " waktu: " + timePar1);
                         results.Add(result.ToString());
                     }
                 }
