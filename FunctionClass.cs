@@ -29,8 +29,8 @@ namespace ParallelSPSS
         public static double Median(double[] data, int missingCount, int size)
         {
             bool isOdd = (size - missingCount) % 2 != 0;
-            double[] x = new double[size - missingCount];
-            double[] res = new double[size - missingCount];
+            double[] x = new double[data.Length];
+            double[] res = new double[data.Length];
             data.CopyTo(x, 0);
             res = x.OrderBy((val) => val).ToArray();
 

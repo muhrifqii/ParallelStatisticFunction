@@ -782,27 +782,27 @@ namespace ParallelSPSS
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                //for (int i = 0; i < Data.columnChoosen.Length; i++)
-                //{
-                //    if (Data.columnChoosen[i] != -1)
-                //    {
-                //        int column = Data.columnChoosen[i];
-                //        double[] data;
-                //        int miss, dataSize;
-                //        double result;
+                for (int i = 0; i < Data.columnChoosen.Length; i++)
+                {
+                    if (Data.columnChoosen[i] != -1)
+                    {
+                        int column = Data.columnChoosen[i];
+                        double[] data;
+                        int miss, dataSize;
+                        double result;
 
-                //        createDataArr(column, out data, out miss, out dataSize);
-                //        Debug.WriteLine(miss);
+                        createDataArr(column, out data, out miss, out dataSize);
+                        Debug.WriteLine(miss);
 
-                //        result = FunctionClass.Median(data, miss, dataSize);
-                //        Debug.WriteLine("median-nya adalah " + result);
-                //        results.Add(result);
-                //    }
-                //}
-                //DialogResult dialog = new DialogResult();                
-                //Form dialogResult = new ResultForm(operatorType);
-                //dialog = dialogResult.ShowDialog();
-                //results.Clear();
+                        result = FunctionClass.Median(data, miss, dataSize);
+                        Debug.WriteLine("median-nya adalah " + result);
+                        results.Add(result);
+                    }
+                }
+                DialogResult dialog = new DialogResult();
+                Form dialogResult = new ResultForm(operatorType);
+                dialog = dialogResult.ShowDialog();
+                results.Clear();
             }
             else dlg1.Close();
         }
@@ -813,27 +813,27 @@ namespace ParallelSPSS
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                //for (int i = 0; i < Data.columnChoosen.Length; i++)
-                //{
-                //    if (Data.columnChoosen[i] != -1)
-                //    {
-                //        int column = Data.columnChoosen[i];
-                //        double[] data;
-                //        int miss, dataSize;
-                //        double result;
+                for (int i = 0; i < Data.columnChoosen.Length; i++)
+                {
+                    if (Data.columnChoosen[i] != -1)
+                    {
+                        int column = Data.columnChoosen[i];
+                        double[] data;
+                        int miss, dataSize;
+                        double result;
 
-                //        createDataArr(column, out data, out miss, out dataSize);
-                //        Debug.WriteLine(miss);
+                        createDataArr(column, out data, out miss, out dataSize);
+                        Debug.WriteLine(miss);
 
-                //        result = FunctionClass.Modes(data, miss, dataSize);
-                //        Debug.WriteLine("modus-nya adalah " + result);
-                //        results.Add(result);
-                //    }
-                //}
-                //DialogResult dialog = new DialogResult();
-                //Form dialogResult = new ResultForm(operatorType);
-                //dialog = dialogResult.ShowDialog();
-                //results.Clear();
+                        result = FunctionClass.Modes(data, miss, dataSize);
+                        Debug.WriteLine("modus-nya adalah " + result);
+                        results.Add(result);
+                    }
+                }
+                DialogResult dialog = new DialogResult();
+                Form dialogResult = new ResultForm(operatorType);
+                dialog = dialogResult.ShowDialog();
+                results.Clear();
             }
             else dlg1.Close();
         }
@@ -844,27 +844,27 @@ namespace ParallelSPSS
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                //for (int i = 0; i < Data.columnChoosen.Length; i++)
-                //{
-                //    if (Data.columnChoosen[i] != -1)
-                //    {
-                //        int column = Data.columnChoosen[i];
-                //        double[] data;
-                //        int miss, dataSize;
-                //        double result;
+                for (int i = 0; i < Data.columnChoosen.Length; i++)
+                {
+                    if (Data.columnChoosen[i] != -1)
+                    {
+                        int column = Data.columnChoosen[i];
+                        double[] data;
+                        int miss, dataSize;
+                        double result;
 
-                //        createDataArr(column, out data, out miss, out dataSize);
-                //        Debug.WriteLine(miss);
+                        createDataArr(column, out data, out miss, out dataSize);
+                        Debug.WriteLine(miss);
 
-                //        result = FunctionClass.StandardDeviation(data, miss, dataSize);
-                //        Debug.WriteLine("deviasi standar-nya adalah " + result);
-                //        results.Add(result);
-                //    }
-                //}
-                //DialogResult dialog = new DialogResult();
-                //Form dialogResult = new ResultForm(operatorType);
-                //dialog = dialogResult.ShowDialog();
-                //results.Clear();
+                        result = FunctionClass.StandardDeviation(data, miss, dataSize);
+                        Debug.WriteLine("deviasi standar-nya adalah " + result);
+                        results.Add(result);
+                    }
+                }
+                DialogResult dialog = new DialogResult();
+                Form dialogResult = new ResultForm(operatorType);
+                dialog = dialogResult.ShowDialog();
+                results.Clear();
             }
             else dlg1.Close();
         }
@@ -875,27 +875,27 @@ namespace ParallelSPSS
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                //for (int i = 0; i < Data.columnChoosen.Length; i++)
-                //{
-                //    if (Data.columnChoosen[i] != -1)
-                //    {
-                //        int column = Data.columnChoosen[i];
-                //        double[] data;
-                //        int miss, dataSize;
-                //        double result;
+                for (int i = 0; i < Data.columnChoosen.Length; i++)
+                {
+                    if (Data.columnChoosen[i] != -1)
+                    {
+                        int column = Data.columnChoosen[i];
+                        double[] data;
+                        int miss, dataSize;
+                        double result;
 
-                //        createDataArr(column, out data, out miss, out dataSize);
-                //        Debug.WriteLine(miss);
+                        createDataArr(column, out data, out miss, out dataSize);
+                        Debug.WriteLine(miss);
 
-                //        result = FunctionClass.Variance(data, miss, dataSize);
-                //        Debug.WriteLine("variansi-nya adalah " + result);
-                //        results.Add(result);
-                //    }
-                //}
-                //DialogResult dialog = new DialogResult();
-                //Form dialogResult = new ResultForm(operatorType);
-                //dialog = dialogResult.ShowDialog();
-                //results.Clear();
+                        result = FunctionClass.Variance(data, miss, dataSize);
+                        Debug.WriteLine("variansi-nya adalah " + result);
+                        results.Add(result);
+                    }
+                }
+                DialogResult dialog = new DialogResult();
+                Form dialogResult = new ResultForm(operatorType);
+                dialog = dialogResult.ShowDialog();
+                results.Clear();
             }
             else dlg1.Close();
         }
@@ -906,27 +906,27 @@ namespace ParallelSPSS
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                //for (int i = 0; i < Data.columnChoosen.Length; i++)
-                //{
-                //    if (Data.columnChoosen[i] != -1)
-                //    {
-                //        int column = Data.columnChoosen[i];
-                //        double[] data;
-                //        int miss, dataSize;
-                //        double result;
+                for (int i = 0; i < Data.columnChoosen.Length; i++)
+                {
+                    if (Data.columnChoosen[i] != -1)
+                    {
+                        int column = Data.columnChoosen[i];
+                        double[] data;
+                        int miss, dataSize;
+                        double result;
 
-                //        createDataArr(column, out data, out miss, out dataSize);
-                //        Debug.WriteLine(miss);
+                        createDataArr(column, out data, out miss, out dataSize);
+                        Debug.WriteLine(miss);
 
-                //        result = FunctionClass.Range(data, miss, dataSize);
-                //        Debug.WriteLine("range-nya adalah " + result);
-                //        results.Add(result);
-                //    }
-                //}
-                //DialogResult dialog = new DialogResult();
-                //Form dialogResult = new ResultForm(operatorType);
-                //dialog = dialogResult.ShowDialog();
-                //results.Clear();
+                        result = FunctionClass.Range(data, miss, dataSize);
+                        Debug.WriteLine("range-nya adalah " + result);
+                        results.Add(result);
+                    }
+                }
+                DialogResult dialog = new DialogResult();
+                Form dialogResult = new ResultForm(operatorType);
+                dialog = dialogResult.ShowDialog();
+                results.Clear();
             }
             else dlg1.Close();
         }
@@ -937,27 +937,27 @@ namespace ParallelSPSS
             Form dlg1 = new AnalyzeForm();
             if (analyzeOption(dlg1))
             {
-                //for (int i = 0; i < Data.columnChoosen.Length; i++)
-                //{
-                //    if (Data.columnChoosen[i] != -1)
-                //    {
-                //        int column = Data.columnChoosen[i];
-                //        double[] data;
-                //        int miss, dataSize;
-                //        double result;
+                for (int i = 0; i < Data.columnChoosen.Length; i++)
+                {
+                    if (Data.columnChoosen[i] != -1)
+                    {
+                        int column = Data.columnChoosen[i];
+                        double[] data;
+                        int miss, dataSize;
+                        double result;
 
-                //        createDataArr(column, out data, out miss, out dataSize);
-                //        Debug.WriteLine(miss);
+                        createDataArr(column, out data, out miss, out dataSize);
+                        Debug.WriteLine(miss);
 
-                //        result = FunctionClass.Mean(data, miss, dataSize);
-                //        Debug.WriteLine("regresi linear-nya adalah " + result);
-                //        results.Add(result);
-                //    }
-                //}
-                //DialogResult dialog = new DialogResult();
-                //Form dialogResult = new ResultForm();
-                //dialog = dialogResult.ShowDialog();
-                //results.Clear();
+                        result = FunctionClass.Mean(data, miss, dataSize);
+                        Debug.WriteLine("regresi linear-nya adalah " + result);
+                        results.Add(result);
+                    }
+                }
+                DialogResult dialog = new DialogResult();
+                Form dialogResult = new ResultForm();
+                dialog = dialogResult.ShowDialog();
+                results.Clear();
             }
             else dlg1.Close();
         }
