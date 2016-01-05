@@ -363,10 +363,11 @@ namespace StatisticsParallel
         /// <param name="rsquared">The r^2 value of the line.</param>
         /// <param name="yintercept">The y-intercept value of the line (i.e. y = ax + b, yintercept is b).</param>
         /// <param name="slope">The slop of the line (i.e. y = ax + b, slope is a).</param>
+        /// <param name="elapsed">elapsed time</param>
         public static void LinearRegression(double[] xVals, double[] yVals,
                                             int inclusiveStart, int exclusiveEnd,
                                             out double rsquared, out double yintercept,
-                                            out double slope)
+                                            out double slope, out long elapsed)
         {
             //Debug.Assert(xVals.Length == yVals.Length);
             double sumOfX = 0;
@@ -379,6 +380,7 @@ namespace StatisticsParallel
             double sCo = 0;
             double count = exclusiveEnd - inclusiveStart;
 
+            Stopwatch timer = Stopwatch.StartNew();
             for (int ctr = inclusiveStart; ctr < exclusiveEnd; ctr++)
             {
                 double x = xVals[ctr];
@@ -402,7 +404,12 @@ namespace StatisticsParallel
             rsquared = dblR * dblR;
             yintercept = meanY - ((sCo / ssX) * meanX);
             slope = sCo / ssX;
+            timer.Stop();
+            elapsed = timer.ElapsedTicks;
         }
+        #endregion
+        #region external library
+
         #endregion
 
         //range paralel : data dipecah jadi n array of data, 
@@ -452,6 +459,7 @@ namespace StatisticsParallel
         /// <param name="rsquared">The r^2 value of the line.</param>
         /// <param name="yintercept">The y-intercept value of the line (i.e. y = ax + b, yintercept is b).</param>
         /// <param name="slope">The slop of the line (i.e. y = ax + b, slope is a).</param>
+        /// <param name="elapsed">the running time.</param>
         public static void LinearRegressionPar(double[] xVals, double[] yVals,
                                             int inclusiveStart, int exclusiveEnd,
                                             out double rsquared, out double yintercept,
@@ -467,25 +475,33 @@ namespace StatisticsParallel
             double sumCodeviates = 0;
             double sCo = 0;
             double count = exclusiveEnd - inclusiveStart;
+            double meanX, meanY, dblR;
+            object lockObj = new object();
 
             Stopwatch timer = Stopwatch.StartNew();
             Task[] tobeDone = new Task[exclusiveEnd - inclusiveStart];
-            Task parent = Task.Factory.StartNew(() =>
+            int j = inclusiveStart;
+            for (int i = 0; i < exclusiveEnd - inclusiveStart; i++)
             {
-                for(int i = 0; i < tobeDone.Length; i++)
+                tobeDone[i] = Task.Factory.StartNew((var) =>
                 {
-                    tobeDone[i] = Task.Factory.StartNew(() =>
+                    double x = (var as double[])[0];
+                    double y = (var as double[])[1];
+                    lock (lockObj)
                     {
-                        double x = xVals[i + inclusiveStart];
-                        double y = yVals[i + inclusiveStart];
                         sumCodeviates += x * y;
                         sumOfX += x;
                         sumOfY += y;
                         sumOfXSq += x * x;
                         sumOfYSq += y * y;
-                    }, TaskCreationOptions.AttachedToParent);
-                }
-            });
+                    }
+                    Debug.WriteLine("threadID: {0}, index num: {1}", Thread.CurrentThread.ManagedThreadId, (var as double[])[2]);
+
+                    //j++;
+                }, new double[] { xVals[i], yVals[i], i }, TaskCreationOptions.AttachedToParent);
+            }
+            Task.WaitAll(tobeDone);
+
             ssX = sumOfXSq - ((sumOfX * sumOfX) / count);
             ssY = sumOfYSq - ((sumOfY * sumOfY) / count);
             double RNumerator = (count * sumCodeviates) - (sumOfX * sumOfY);
@@ -493,12 +509,14 @@ namespace StatisticsParallel
              * (count * sumOfYSq - (sumOfY * sumOfY));
             sCo = sumCodeviates - ((sumOfX * sumOfY) / count);
 
-            double meanX = sumOfX / count;
-            double meanY = sumOfY / count;
-            double dblR = RNumerator / Math.Sqrt(RDenom);
+            meanX = sumOfX / count;
+            meanY = sumOfY / count;
+            dblR = RNumerator / Math.Sqrt(RDenom);
+
             rsquared = dblR * dblR;
             yintercept = meanY - ((sCo / ssX) * meanX);
             slope = sCo / ssX;
+
             timer.Stop();
             elapsed = timer.ElapsedTicks;
         }
@@ -716,7 +734,7 @@ namespace StatisticsParallel
             public double Max { get; set; }
             public double Min { get; set; }
         }
+        
     }
-
-   
+    
 }

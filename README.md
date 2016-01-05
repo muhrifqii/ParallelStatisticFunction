@@ -13,12 +13,13 @@ The Statistics operations are:
 * **Standard Deviation**
 * **Variance**
 * **Range**	`paralleled function`
-* **Linear Regression**
+* **Linear Regression** `paralleled function`
 
 External Library
 ----------------
 * **Newtonsoft.Json** for read and write
 * **unvell.ReoGrid** for the sheet views
+* **MathNet.Numerics** for extra statistical function 
 
 Credits
 -------

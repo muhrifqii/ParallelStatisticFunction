@@ -972,13 +972,19 @@ namespace ParallelSPSS
                     }
                     
                 }
-                double r, a, b;
+                double r, rPar, a, aPar, b, bPar;
+                long time, timeSeq;
 
                 FunctionClass.LinearRegression(
                     xy[0], xy[1], 
                     0, xy[0].Length < xy[1].Length?xy[0].Length:xy[1].Length, 
-                    out r, out b, out a);
-                Debug.WriteLine("regresi linear-nya adalah: Y = {0}X + {1}",a,b);
+                    out r, out b, out a, out timeSeq);
+                ParallelFunctionClass.LinearRegressionPar(
+                    xy[0], xy[1],
+                    0, xy[0].Length < xy[1].Length ? xy[0].Length : xy[1].Length,
+                    out rPar, out bPar, out aPar, out time);
+                Debug.WriteLine("regresi linear-nya {2} adalah: Y = {0}X + {1}", a, b, timeSeq);
+                Debug.WriteLine("regresi linearPar-nya {2} adalah: Y = {0}X + {1}", aPar, bPar, time);
                 results.Add("Y = " + a + "X + " + b);
 
                 DialogResult dialog = new DialogResult();

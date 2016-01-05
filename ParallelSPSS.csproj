@@ -169,7 +169,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StatisticsParallel\StatisticsParallel.csproj">
+    <ProjectReference Include="StatisticsParallel\StatisticsParallel.csproj">
       <Project>{a87dd5a9-d6d0-4952-ba97-0a4bbc1a0fbc}</Project>
       <Name>StatisticsParallel</Name>
       <EmbedInteropTypes>False</EmbedInteropTypes>
