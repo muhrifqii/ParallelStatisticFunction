@@ -1,0 +1,5 @@
+D:\Kuliah\NEW\S7\sispar\ParallelSPSS\StatisticsParallel\bin\Debug\StatisticsParallel.dll
+D:\Kuliah\NEW\S7\sispar\ParallelSPSS\StatisticsParallel\bin\Debug\StatisticsParallel.pdb
+D:\Kuliah\NEW\S7\sispar\ParallelSPSS\StatisticsParallel\obj\Debug\StatisticsParallel.csprojResolveAssemblyReference.cache
+D:\Kuliah\NEW\S7\sispar\ParallelSPSS\StatisticsParallel\obj\Debug\StatisticsParallel.dll
+D:\Kuliah\NEW\S7\sispar\ParallelSPSS\StatisticsParallel\obj\Debug\StatisticsParallel.pdb

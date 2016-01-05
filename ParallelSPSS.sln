@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelSPSS", "ParallelSPSS.csproj", "{60938FEE-80F5-4E47-B714-5346C00D0D4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatisticsParallel", "..\StatisticsParallel\StatisticsParallel.csproj", "{A87DD5A9-D6D0-4952-BA97-0A4BBC1A0FBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatisticsParallel", ".\StatisticsParallel\StatisticsParallel.csproj", "{A87DD5A9-D6D0-4952-BA97-0A4BBC1A0FBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -933,7 +933,7 @@ namespace ParallelSPSS
 
                         createDataArr(column, out data, out miss, out dataSize);
                         Debug.WriteLine(miss);
-
+                        
                         result = FunctionClass.Range(data, miss, dataSize, out timeSeq);
                         parRes = ParallelFunctionClass.RangeParTask1(data, miss, dataSize, out timePar);
                         parRes1 = ParallelFunctionClass.RangeParTask2(data, miss, dataSize, out timePar1);
