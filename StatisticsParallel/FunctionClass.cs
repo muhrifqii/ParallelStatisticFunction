@@ -409,7 +409,6 @@ namespace StatisticsParallel
         }
         #endregion
         #region external library
-
         #endregion
 
         //range paralel : data dipecah jadi n array of data, 

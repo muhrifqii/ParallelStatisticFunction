@@ -34,3 +34,5 @@ D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\obj\Debug\ParallelSPSS.ResultF
 D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\obj\Debug\ParallelSPSS.csproj.GenerateResource.Cache
 D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\bin\Debug\StatisticsParallel.dll
 D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\bin\Debug\StatisticsParallel.pdb
+D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\bin\Debug\MathNet.Numerics.dll
+D:\Kuliah\NEW\S7\sispar\ParallelSPSS\ParallelSPSS\bin\Debug\MathNet.Numerics.xml

@@ -39,13 +39,20 @@ namespace ParallelSPSS
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.excelToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cSVToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.analyzeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.standardDeviationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.varianceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linearRegresionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.medianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -53,13 +60,6 @@ namespace ParallelSPSS
             this.reoGridDataView = new unvell.ReoGrid.ReoGridControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.reoGridVarView = new unvell.ReoGrid.ReoGridControl();
-            this.modesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.standardDeviationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.varianceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.excelToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cSVToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -110,28 +110,28 @@ namespace ParallelSPSS
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(164, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(114, 22);
             this.toolStripMenuItem2.Text = "New";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.newMenuClicked);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(164, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(114, 22);
             this.toolStripMenuItem3.Text = "Open";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.openMenuClicked);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(164, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(114, 22);
             this.toolStripMenuItem4.Text = "Save";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.saveMenuClicked);
             // 
             // saveAsMenu
             // 
             this.saveAsMenu.Name = "saveAsMenu";
-            this.saveAsMenu.Size = new System.Drawing.Size(164, 22);
+            this.saveAsMenu.Size = new System.Drawing.Size(114, 22);
             this.saveAsMenu.Text = "Save As";
             this.saveAsMenu.Click += new System.EventHandler(this.saveAsClicked);
             // 
@@ -141,8 +141,22 @@ namespace ParallelSPSS
             this.excelToolStripMenuItem,
             this.cSVToolStripMenuItem});
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(114, 22);
             this.toolStripMenuItem6.Text = "Import";
+            // 
+            // excelToolStripMenuItem
+            // 
+            this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.excelToolStripMenuItem.Text = "Excel";
+            this.excelToolStripMenuItem.Click += new System.EventHandler(this.importExcelMenuClicked);
+            // 
+            // cSVToolStripMenuItem
+            // 
+            this.cSVToolStripMenuItem.Name = "cSVToolStripMenuItem";
+            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.cSVToolStripMenuItem.Text = "CSV";
+            this.cSVToolStripMenuItem.Click += new System.EventHandler(this.importCSVMenuClicked);
             // 
             // toolStripMenuItem7
             // 
@@ -150,13 +164,27 @@ namespace ParallelSPSS
             this.excelToolStripMenuItem1,
             this.cSVToolStripMenuItem1});
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(114, 22);
             this.toolStripMenuItem7.Text = "Export";
+            // 
+            // excelToolStripMenuItem1
+            // 
+            this.excelToolStripMenuItem1.Name = "excelToolStripMenuItem1";
+            this.excelToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.excelToolStripMenuItem1.Text = "Excel";
+            this.excelToolStripMenuItem1.Click += new System.EventHandler(this.exportAsExcelMenuClicked);
+            // 
+            // cSVToolStripMenuItem1
+            // 
+            this.cSVToolStripMenuItem1.Name = "cSVToolStripMenuItem1";
+            this.cSVToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.cSVToolStripMenuItem1.Text = "CSV";
+            this.cSVToolStripMenuItem1.Click += new System.EventHandler(this.exportAsCSVMenuClicked);
             // 
             // exitMenu
             // 
             this.exitMenu.Name = "exitMenu";
-            this.exitMenu.Size = new System.Drawing.Size(164, 22);
+            this.exitMenu.Size = new System.Drawing.Size(114, 22);
             this.exitMenu.Text = "Exit";
             this.exitMenu.Click += new System.EventHandler(this.exitMenuClicked);
             // 
@@ -181,6 +209,34 @@ namespace ParallelSPSS
             this.meanToolStripMenuItem.Text = "Mean";
             this.meanToolStripMenuItem.Click += new System.EventHandler(this.meanClick);
             // 
+            // medianToolStripMenuItem
+            // 
+            this.medianToolStripMenuItem.Name = "medianToolStripMenuItem";
+            this.medianToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.medianToolStripMenuItem.Text = "Median";
+            this.medianToolStripMenuItem.Click += new System.EventHandler(this.medianClicked);
+            // 
+            // modesToolStripMenuItem
+            // 
+            this.modesToolStripMenuItem.Name = "modesToolStripMenuItem";
+            this.modesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.modesToolStripMenuItem.Text = "Modes";
+            this.modesToolStripMenuItem.Click += new System.EventHandler(this.modesClicked);
+            // 
+            // standardDeviationToolStripMenuItem
+            // 
+            this.standardDeviationToolStripMenuItem.Name = "standardDeviationToolStripMenuItem";
+            this.standardDeviationToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.standardDeviationToolStripMenuItem.Text = "Standard Deviation";
+            this.standardDeviationToolStripMenuItem.Click += new System.EventHandler(this.standardDeviationClicked);
+            // 
+            // varianceToolStripMenuItem
+            // 
+            this.varianceToolStripMenuItem.Name = "varianceToolStripMenuItem";
+            this.varianceToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.varianceToolStripMenuItem.Text = "Variance";
+            this.varianceToolStripMenuItem.Click += new System.EventHandler(this.varianceClicked);
+            // 
             // rangeToolStripMenuItem
             // 
             this.rangeToolStripMenuItem.Name = "rangeToolStripMenuItem";
@@ -194,13 +250,6 @@ namespace ParallelSPSS
             this.linearRegresionToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.linearRegresionToolStripMenuItem.Text = "Linear Regresion";
             this.linearRegresionToolStripMenuItem.Click += new System.EventHandler(this.regresionClicked);
-            // 
-            // medianToolStripMenuItem
-            // 
-            this.medianToolStripMenuItem.Name = "medianToolStripMenuItem";
-            this.medianToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.medianToolStripMenuItem.Text = "Median";
-            this.medianToolStripMenuItem.Click += new System.EventHandler(this.medianClicked);
             // 
             // tabControl1
             // 
@@ -232,6 +281,8 @@ namespace ParallelSPSS
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(789, 20);
             this.textBox1.TabIndex = 2;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label1
             // 
@@ -286,55 +337,6 @@ namespace ParallelSPSS
             this.reoGridVarView.Size = new System.Drawing.Size(875, 440);
             this.reoGridVarView.TabIndex = 0;
             this.reoGridVarView.Text = "reoGridVariableView";
-            // 
-            // modesToolStripMenuItem
-            // 
-            this.modesToolStripMenuItem.Name = "modesToolStripMenuItem";
-            this.modesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.modesToolStripMenuItem.Text = "Modes";
-            this.modesToolStripMenuItem.Click += new System.EventHandler(this.modesClicked);
-            // 
-            // standardDeviationToolStripMenuItem
-            // 
-            this.standardDeviationToolStripMenuItem.Name = "standardDeviationToolStripMenuItem";
-            this.standardDeviationToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.standardDeviationToolStripMenuItem.Text = "Standard Deviation";
-            this.standardDeviationToolStripMenuItem.Click += new System.EventHandler(this.standardDeviationClicked);
-            // 
-            // varianceToolStripMenuItem
-            // 
-            this.varianceToolStripMenuItem.Name = "varianceToolStripMenuItem";
-            this.varianceToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.varianceToolStripMenuItem.Text = "Variance";
-            this.varianceToolStripMenuItem.Click += new System.EventHandler(this.varianceClicked);
-            // 
-            // excelToolStripMenuItem
-            // 
-            this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.excelToolStripMenuItem.Text = "Excel";
-            this.excelToolStripMenuItem.Click += new System.EventHandler(this.importExcelMenuClicked);
-            // 
-            // cSVToolStripMenuItem
-            // 
-            this.cSVToolStripMenuItem.Name = "cSVToolStripMenuItem";
-            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cSVToolStripMenuItem.Text = "CSV";
-            this.cSVToolStripMenuItem.Click += new System.EventHandler(this.importCSVMenuClicked);
-            // 
-            // excelToolStripMenuItem1
-            // 
-            this.excelToolStripMenuItem1.Name = "excelToolStripMenuItem1";
-            this.excelToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.excelToolStripMenuItem1.Text = "Excel";
-            this.excelToolStripMenuItem1.Click += new System.EventHandler(this.exportAsExcelMenuClicked);
-            // 
-            // cSVToolStripMenuItem1
-            // 
-            this.cSVToolStripMenuItem1.Name = "cSVToolStripMenuItem1";
-            this.cSVToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.cSVToolStripMenuItem1.Text = "CSV";
-            this.cSVToolStripMenuItem1.Click += new System.EventHandler(this.exportAsCSVMenuClicked);
             // 
             // Form1
             // 

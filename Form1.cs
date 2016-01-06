@@ -27,7 +27,7 @@ namespace ParallelSPSS
         public static List<string> results = new List<string>();
         public static List<string> columnChoosen = new List<string>();
 
-
+        private ReoGridCell currentActiveCell;
         private string filePath;
 
         public Form1()
@@ -118,6 +118,8 @@ namespace ParallelSPSS
         private void dataViewSheet_FocusPosChanged(object sender, CellPosEventArgs e)
         {
             var sheet = reoGridDataView.CurrentWorksheet;
+
+            currentActiveCell = sheet.Cells[e.Position];
 
             if (sheet[e.Position] != null)
                 textBox1.Text = sheet[e.Position].ToString();
@@ -232,6 +234,9 @@ namespace ParallelSPSS
         void sheet_CellMouseDown(object sender, CellMouseEventArgs e)
         {
             var sheet = reoGridDataView.CurrentWorksheet;
+
+            currentActiveCell = e.Cell;
+
             string temp = sheet.ColumnHeaders[e.CellPosition.Col].Text;
             if (temp == "VAR")
                 temp = "";
@@ -995,5 +1000,30 @@ namespace ParallelSPSS
             else dlg1.Close();
         }
         #endregion
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            var sheet = reoGridControl1.CurrentWorksheet;
+            if (currentActiveCell == null)
+            {
+                return;
+            }
+
+            currentActiveCell.Data = textBox1.Text;
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (currentActiveCell == null)
+            {
+                return;
+            }
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                var cuk = sender as TextBox;
+                currentActiveCell.Data = cuk.Text;
+            }
+        }
     }
 }
